@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tambah data</title>
+</head>
+<body>
+    <h3>Tambah Data User</h3>
+    <form style="width: 50%;">
+        <form>
+            <div class="mb-3">
+              <label for="txNAMA">Nama</label>
+              <input type="text" class="form-control" id="txNAMA" placeholder="masukan nama">
+            </div>
+            <div class="mb-3">
+                <label for="txEMAIL">Email</label>
+                <input type="text" class="form-control" id="txEMAIL"  placeholder="masukan email">
+            </div>
+            <div class="mb-3">
+                <label for="txUSER">user Name</label>
+                <input type="text" class="form-control" id="txUSER"  placeholder="masukan user">
+            </div>
+            <div class="mb-3">
+                <label for="txPASS">password</label>
+                <input type="text" class="form-control" id="txPASS1"  placeholder="masukan user">
+            </div>
+            <div class="mb-3">
+                <label for="txPASS2">verifikasi password</label>
+                <input type="text" class="form-control" id="txPASS2"  placeholder="masukan user">
+            </div>
+            
+            <button type="button" oneclick="storedata()" class="btn btn-primary">Submit</button>
+          </form>
+
+        <script>
+            function storedata(){
+                let target = "https://webpro.ptov.my.id/api/curduser.php?aksi=store"
+                let nama = document.getElementById('txNAMA').value;
+                let email = document.getElementById('txEMAIL').value;
+                let username = document.getElementById('txUSER').value;
+                let pass1 = document.getElementById('txPASS').value;
+                let pass2 = document.getElementById('txPASS2').value;
+                let params = "nama"+nama+"&email"+email+"&username"+username+"&pass1"+pass1+"&pass2"+pass2;
+
+                const storedata= new XMLHttpRequest();
+                storedata.open("POST", target , true);
+                storedata.setRequestHeader("Conten-type", "application/x-www-form-urlencoded")
+                storedata.send(params)
+                
+                storedata.onload= function(){
+                    console.log(this.responseText);
+                }
+            }
+        </script>
+    </form>
+</body>
+</html>
